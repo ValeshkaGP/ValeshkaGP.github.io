@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoHogar - Gral. Eloy Alfaro Delgado</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+        <header>
+            <div class="header-content">
+                <h1>EcoHogar</h1>
+                <p>Juntos por un futuro sostenible</p>
+                <div class="text-box">
+                    Cada pequeño acto cuenta para un planeta sano
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="inicio.html">Ideas para el Hogar</a></li>
+                        <li><a href="second.html">Eco-Amigables</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    <main>
+        <section class="eco-school-section" data-aos="fade-up">
+            <h2 class="text-center">Iniciativas Eco-Amigables</h2>
+            <p class="text-center">Juntos construimos un futuro sostenible para nuestra institución</p>
+
+            <div class="initiative-cards">
+                <div class="initiative-card floating-card" data-aos="fade-up">
+                    <div class="initiative-icon">🌱</div>
+                    <h3>Huerto Escolar</h3>
+                    <p>Creación y mantenimiento de un huerto orgánico que proporcionará alimentos frescos para nuestra comunidad.</p>
+                    <ul>
+                        <li>Cultivo de vegetales orgánicos</li>
+                        <li>Educación práctica sobre agricultura</li>
+                        <li>Compostaje de residuos orgánicos</li>
+                    </ul>
+                </div>
+
+                <div class="initiative-card floating-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="initiative-icon">♻️</div>
+                    <h3>Reciclaje Creativo</h3>
+                    <p>Transformación de residuos en proyectos artísticos y útiles para la escuela.</p>
+                    <ul>
+                        <li>Talleres de arte con materiales reciclados</li>
+                        <li>Estaciones de separación de residuos</li>
+                        <li>Concursos de creatividad sostenible</li>
+                    </ul>
+                </div>
+
+                <div class="initiative-card floating-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="initiative-icon">💧</div>
+                    <h3>Gestión del Agua</h3>
+                    <p>Implementación de sistemas eficientes para el uso y recolección de agua.</p>
+                    <ul>
+                        <li>Sistema de recolección de agua lluvia</li>
+                        <li>Monitoreo del consumo de agua</li>
+                        <li>Campaña de concientización</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="eco-metrics" data-aos="fade-up">
+                <h2 class="text-center" style="grid-column: 1 / -1; margin-bottom: 2rem;">Metas a Alcanzar</h2>
+                <div class="metric-card">
+                    <div class="metric-number" id="treesPlanted">0</div>
+                    <p>Árboles por Plantar</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number" id="wasteRecycled">0</div>
+                    <p>Kg de Residuos por Reciclar</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number" id="studentsInvolved">0</div>
+                    <p>Comunidad por Involucrar</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">∞</div>
+                    <p>Construcción De Un Mundo Mejor</p>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section class="chat-section" data-aos="fade-up">
+            <h2>Foro de Ideas Eco-Amigables</h2>
+            <p>Comparte tus ideas y sugerencias para hacer de nuestra institución un espacio más sostenible</p>
+
+            <div class="chat-container" id="chatContainer">
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Escribe tu idea o sugerencia...">
+                <button onclick="sendMessage()">Enviar</button>
+            </div>
+        </section>
+
+        <div class="participation-board" data-aos="fade-up">
+            <h2>Participación Comunitaria a Implementar</h2>
+            <div class="participation-grid">
+                <div class="participation-item">
+                    <h3>Estudiantes</h3>
+                    <p>Liderando iniciativas de cambio</p>
+                </div>
+                <div class="participation-item">
+                    <h3>Docentes</h3>
+                    <p>Guiando proyectos sostenibles</p>
+                </div>
+                <div class="participation-item">
+                    <h3>Familias</h3>
+                    <p>Apoyando el cambio desde casa</p>
+                </div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="link-button" onclick="goToNextPage()">Retroceder</button>
+        </div>
+        
+    </main>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        function animateMetrics() {
+            const metrics = {
+                treesPlanted: { target: 300, increment: 2 },
+                wasteRecycled: { target: 1000, increment: 8 },
+                studentsInvolved: { target: 2000, increment: 15 }
+            };
+            for (let metric in metrics) {
+                let current = 0;
+                const interval = setInterval(() => {
+                    if (current < metrics[metric].target) {
+                        current += metrics[metric].increment;
+                        document.getElementById(metric).textContent = current;
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 20);
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateMetrics();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.eco-metrics'));
+        const messages = [
+            {
+                user: "María González - Docente de Ciencias",
+                message: "Propongo implementar un sistema de compostaje para los residuos de la cafetería. Podríamos usar el compost en nuestro huerto escolar."
+            },
+            {
+                user: "Carlos Rodríguez - Estudiante 6to año",
+                message: "Organicemos una feria mensual de intercambio de libros y útiles escolares usados. Así reducimos el consumo y ayudamos a las familias."
+            },
+            {
+                user: "Ana Valencia - Madre de Familia",
+                message: "Sugiero crear un sistema de captación de agua lluvia para el riego de jardines y huertos. También podríamos instalar sensores de movimiento para el control de luces."
+            },
+            {
+                user: "Pedro Morales - Profesor de ECA",
+                message: "Propongo crear un taller de arte sustentable donde transformemos residuos en obras de arte. Podríamos hacer una exposición mensual."
+            },
+            {
+                user: "Lucía Mendoza - Estudiante 3ro Bachillerato",
+                message: "¿Qué tal si implementamos un programa de 'Guardianes del Ambiente' donde los estudiantes nos turnamos para supervisar el reciclaje y ahorro energético?"
+            },
+            {
+                user: "Roberto Sánchez - Coordinador",
+                message: "Podemos establecer un sistema de puntos verdes para premiar a las aulas que mejor gestionen sus residuos y recursos energéticos."
+            },
+            {
+                user: "Susana Salinas - Docente de Matemáticas",
+                message: "Propongo crear un proyecto interdisciplinario donde los estudiantes calculen y grafiquen nuestro impacto ambiental mensual."
+            }
+        ];
+
+
+        function displayMessages() {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.innerHTML = '';
+            
+            messages.forEach(msg => {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'chat-message';
+                messageElement.innerHTML = `
+                    <strong>${msg.user}</strong>
+                    <p>${msg.message}</p>
+                `;
+                chatContainer.appendChild(messageElement);
+            });
+
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (message) {
+                messages.push({
+                    user: "Usuario Anónimo",
+                    message: message
+                });
+
+                displayMessages();
+                input.value = '';
+            }
+        }
+
+        displayMessages();
+
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function goToNextPage() {
+            window.location.href = "inicio.html"; 
+        }
+    </script>
+</body>
+</html>

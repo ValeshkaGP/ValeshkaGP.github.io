@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hero">
+        <div class="particles" id="particles"></div>
+        <div class="content">
+            <h1 class="title">Unidad Educativa Fiscal<br>Gral. Eloy Alfaro Delgado</h1>
+            
+            <div class="author-info">
+                <h3>Proyecto De Grado</h3>
+                <p>Desarrollado por: Gómez Palma Valeshka Geovanna</p>
+                <p>3ro Informática "B"</p>
+                <p>Bajo la asesoría de: Lcda. Soriano Santana Yessenia</p>
+            </div>
+            <div class="button-wrapper">
+                <button class="cta-button" id="continueButton">Continuar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        gsap.from('.content', {
+            opacity: 0,
+            y: 100,
+            rotationX: 45,
+            duration: 1.5,
+            ease: 'power4.out'
+        });
+        gsap.from('.title', {
+            opacity: 0,
+            scale: 0.5,
+            duration: 1.2,
+            delay: 0.5,
+            ease: 'back.out(1.7)'
+        });
+        gsap.from('.author-info', {
+            opacity: 0,
+            x: -100,
+            duration: 1,
+            delay: 1,
+            ease: 'elastic.out(1, 0.8)'
+        });
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                container.appendChild(particle);
+            }
+        }
+        document.addEventListener('mousemove', (e) => {
+            const content = document.querySelector('.content');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            content.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+        document.addEventListener('DOMContentLoaded', createParticles);
+        gsap.from('.button-wrapper', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            delay: 1.5,
+            ease: 'power4.out'
+        });
+        document.getElementById('continueButton').addEventListener('click', () => {
+            gsap.to('.content', {
+            opacity: 0,
+            y: -100,
+            duration: 1,
+            ease: 'power4.inOut',
+            onComplete: () => {
+            window.location.href = 'inicio.html';
+        }
+    });
+});
+        const button = document.querySelector('.cta-button');
+        button.addEventListener('mousemove', (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            button.style.setProperty('--x', `${x}px`);
+            button.style.setProperty('--y', `${y}px`);
+        });
+    </script>
+    </body>
+</html>
